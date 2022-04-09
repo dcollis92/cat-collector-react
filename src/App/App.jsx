@@ -85,7 +85,10 @@ function App() {
     setCats(cats.filter(cat => cat.id !== parseInt(id)))
   }
 
-  const deleteToy = async (id) => {}
+  const deleteToy = async (id) => {
+    await toyService.deleteOne(id)
+    setToys(toys.filter(toy => toy.id !== parseInt(id)))
+  }
 
   const handleLogout = () => {
     authService.logout()
