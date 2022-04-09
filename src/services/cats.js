@@ -79,3 +79,18 @@ export const addFeeding = async (id, data) => {
     throw error
   }
 }
+
+export const assocToy = async (catId, toyId) => {
+  try {
+    const res = await fetch(`${BASE_URL}${catId}/toys/${toyId}`, {
+      method: "LINK",
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`
+      },
+    })
+    return await res.json()
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
