@@ -39,6 +39,14 @@ function App() {
     CatInBox, TeaCupCat,
   ]
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await catService.getAll()
+      setCats(data)
+    }
+    fetchData()
+  }, [])
+
   const addCat = async (catData) => {
     const cat = await catService.create(catData)
     setCats([...cats, cat])
