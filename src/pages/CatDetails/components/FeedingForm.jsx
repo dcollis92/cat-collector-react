@@ -2,7 +2,7 @@ import { useState } from 'react'
 import moment from 'moment'
 
 // Services
-
+import { addFeeding } from '../../../services/cats'
 
 const initialState = {
   meal: 'B',
@@ -12,7 +12,12 @@ const initialState = {
 const FeedingForm = ({ cat, setCat }) => {
   const [form, setForm] = useState(initialState)
 
-  const addToFeedings = async (e) => {}
+  const addToFeedings = async (e) => {
+    e.preventDefault()
+    const fedCat = await addFeeding(cat.id, form)
+    setCat(fedCat)
+    setForm(initialState)
+  }
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
