@@ -73,7 +73,12 @@ function App() {
     )))
   }
 
-  const updateToy = async (toyData) => {}
+  const updateToy = async (toyData) => {
+    const updatedToy = await toyService.update(toyData)
+    setToys(toys.map((toy) => (
+      toy.id === updatedToy.id ? updatedToy : toy
+    )))
+  }
 
   const deleteCat = async (id) => {
     await catService.deleteOne(id)
