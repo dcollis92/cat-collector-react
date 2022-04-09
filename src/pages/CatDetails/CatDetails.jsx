@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import './CatDetails.css'
 
 // Services
-
+import { getOne } from '../../services/cats'
 
 // Components
 import Feedings from './components/Feedings'
@@ -18,7 +18,14 @@ const CatDetails = ({ catImages, user }) => {
 
   const addToCollection = async (e) => {}
 
-  useEffect(() => {}, [id])
+  useEffect(() => {
+    const fetchOne = async () => {
+      const data = await getOne(id)
+      setCat(data.cat)
+      setAvailableToys(data.available_toys)
+    }
+    fetchOne()
+  }, [id])
 
   if (!cat) return <h1>Loading</h1>
 
