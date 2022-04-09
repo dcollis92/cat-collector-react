@@ -48,6 +48,14 @@ function App() {
     fetchData()
   }, [])
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await toyService.getAll()
+      setToys(data)
+    }
+    fetchData()
+  }, [])
+
   const addCat = async (catData) => {
     const cat = await catService.create(catData)
     setCats([...cats, cat])
