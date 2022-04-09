@@ -54,7 +54,12 @@ function App() {
 
   const addToy = async (toyData) => {}
 
-  const updateCat = async (catData) => {}
+  const updateCat = async (catData) => {
+    const updatedCat = await catService.update(catData)
+    setCats(cats.map((cat) => (
+      cat.id === updatedCat.id ? updatedCat : cat
+    )))
+  }
 
   const updateToy = async (toyData) => {}
 

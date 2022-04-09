@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import '../../styles/Form.css'
 
 // Services
-
+import { getOne } from '../../services/cats'
 
 // Components
 import CatInput from './CatInput'
@@ -26,7 +26,20 @@ const CatForm = (props) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  useEffect(() => {}, [id])
+  useEffect(() => {
+    const fetchOne = async () => {
+      const data = await getOne(id)
+      setForm({
+        id: data.cat.id,
+        name: data.cat.name,
+        breed: data.cat.breed,
+        description: data.cat.description,
+        age: data.cat.age
+      })
+    }
+    id && fetchOne()
+    return () => setForm({})
+  }, [id])
 
   return (
     <>
